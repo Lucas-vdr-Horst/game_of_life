@@ -41,16 +41,12 @@ class Simulator:
             for x in range(world_copy.width):
                 neighbors = np.array(world_copy.get_neighbours(x, y))
 
-                # rule 1
-                if np.count_nonzero(neighbors) < 2:
-                    self.world.set(x, y, 0)
-                # rule 2
-                elif np.count_nonzero(neighbors) > 3:
-                    self.world.set(x, y, 0)
-                # rule 4
-                elif np.count_nonzero(neighbors) == 3:
-                    self.world.set(x, y, 1)
-                # rule 3 nothing changes
+                if world_copy.get(x, y) == 0:
+                    if np.count_nonzero(neighbors) in self.birth_condition:
+                        self.world.set(x, y, 1)
+                else:
+                    if np.count_nonzero(neighbors) not in self.survive_condition:
+                        self.world.set(x, y, 0)
 
         return self.world
 
