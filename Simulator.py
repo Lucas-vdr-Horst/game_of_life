@@ -1,4 +1,5 @@
 from World import *
+import copy
 
 
 class Simulator:
@@ -26,8 +27,22 @@ class Simulator:
         :return: New state of the world.
         """
         self.generation += 1
+        world_copy = copy.deepcopy(self.world)
 
-        # TODO: Do something to evolve the generation
+        for y in range(world_copy.height):
+            for x in range(world_copy.width):
+                neighbors = np.array(world_copy.get_neighbours(x, y))
+
+                # rule 1
+                if np.count_nonzero(neighbors) < 2:
+                    self.world.set(x, y, 0)
+                # rule 2
+                elif np.count_nonzero(neighbors) > 3:
+                    self.world.set(x, y, 0)
+                # rule 4
+                elif np.count_nonzero(neighbors) == 3:
+                    self.world.set(x, y, 1)
+                # rule 3 nothing changes
 
         return self.world
 
