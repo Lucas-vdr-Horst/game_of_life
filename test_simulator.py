@@ -21,9 +21,9 @@ class TestSimulator(TestCase):
         """
         world = World(4)
         self.sim.set_world(world)
-        world.set(0, 0, 1)
         world.set(0, 1, 1)
-        world.set(0, 2, 1)
+        world.set(1, 1, 1)
+        world.set(2, 1, 1)
         next_world = self.sim.update()
         expected = np.array([
             [0, 1, 0, 0],
@@ -31,7 +31,7 @@ class TestSimulator(TestCase):
             [0, 1, 0, 0],
             [0, 0, 0, 0],
         ])
-        self.assertEqual(next_world.world.tolist(), expected.tolist())
+        self.assertEqual(expected.tolist(), next_world.world.tolist())
 
     def test_get_generation(self):
         """
