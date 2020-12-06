@@ -101,7 +101,6 @@ class Visualisation:
         if floor(self.scale * margin) < 5:
             self.scale = 5/margin
 
-
     def __redraw__(self) -> None:
         """
         Internal method to redraw the elements of the visualisation.

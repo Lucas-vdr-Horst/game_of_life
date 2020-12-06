@@ -15,6 +15,11 @@ class TestSimulator(TestCase):
         """
         self.assertIsInstance(self.sim.update(), World)
 
+    def test_update_rule(self):
+        """
+
+        """
+
     def test_get_generation(self):
         """
         Tests whether get_generation returns the correct value:
