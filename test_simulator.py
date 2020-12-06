@@ -33,6 +33,29 @@ class TestSimulator(TestCase):
         ])
         self.assertEqual(expected.tolist(), next_world.world.tolist())
 
+    def test_different_ruleset(self):
+        """
+        Tests different rule-sets for different cellular automata
+        """
+        world = World(7, 5)
+        sim = Simulator(world, {3, 5, 8}, {2, 3, 7})    # rule-set B358/S237
+        world.world = np.array([
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 1, 1, 1, 1, 1, 0],
+            [0, 1, 0, 1, 0, 0, 0],
+            [0, 1, 1, 1, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+        ])
+        next_world = sim.update()
+        expected = np.array([
+            [0, 0, 1, 1, 1, 0, 0],
+            [0, 1, 1, 1, 1, 0, 0],
+            [1, 1, 1, 0, 1, 0, 0],
+            [0, 1, 1, 1, 0, 0, 0],
+            [0, 0, 1, 0, 0, 0, 0],
+        ])
+        self.assertEqual(expected.tolist(), next_world.world.tolist())
+
     def test_get_generation(self):
         """
         Tests whether get_generation returns the correct value:
