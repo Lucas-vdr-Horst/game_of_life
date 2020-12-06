@@ -17,8 +17,21 @@ class TestSimulator(TestCase):
 
     def test_update_rule(self):
         """
-
+        Tests the update rules, the core of Game of Life
         """
+        world = World(4)
+        self.sim.set_world(world)
+        world.set(0, 0, 1)
+        world.set(0, 1, 1)
+        world.set(0, 2, 1)
+        next_world = self.sim.update()
+        expected = np.array([
+            [0, 1, 0, 0],
+            [0, 1, 0, 0],
+            [0, 1, 0, 0],
+            [0, 0, 0, 0],
+        ])
+        self.assertEqual(next_world.world.tolist(), expected.tolist())
 
     def test_get_generation(self):
         """
