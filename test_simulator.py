@@ -49,9 +49,9 @@ class TestSimulator(TestCase):
         next_world = sim.update()
         expected = np.array([
             [0, 0, 1, 1, 1, 0, 0],
-            [0, 1, 1, 1, 1, 0, 0],
-            [1, 1, 1, 0, 1, 0, 0],
-            [0, 1, 1, 1, 0, 0, 0],
+            [0, 1, 0, 1, 1, 0, 0],
+            [1, 0, 1, 0, 1, 0, 0],
+            [0, 1, 0, 1, 0, 0, 0],
             [0, 0, 1, 0, 0, 0, 0],
         ])
         self.assertEqual(expected.tolist(), next_world.world.tolist())
